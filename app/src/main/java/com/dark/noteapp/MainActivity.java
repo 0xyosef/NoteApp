@@ -98,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
             mMenu.findItem(R.id.actionGrid).setVisible(true);
             return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 }
