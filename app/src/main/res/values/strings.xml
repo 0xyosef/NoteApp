@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">NoteApp</string>
+    <string name="title_name">Name: Title</string>
+    <string name="text_view_note">Note</string>
+    <string name="text_view_add_note">add text here</string>
+    <string name="add_note_button">Add Note</string>
+    <string name="select_picture">"select photo "</string>
+    <string name="read_permisstion_needed_to_access_file">read permisstion needed to access file</string>
+    <string name="error_selecting_photo">Error when Selected photo</string>
+    <string name="write_title">write title and text</string>
+    <string name="search">search</string>
+    <string name="content_description_search">search</string>
+    <string name="more">more</string>
+    <string name="grid">الجدول</string>
+    <string name="list">القائمه</string>
+    <string name="content_description_more">more</string>
+    <string name="didnt_add_note">didnt add note</string>
+</resources>

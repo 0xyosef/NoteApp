@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/actionGrid"
+        android:title="@string/grid"
+        android:icon="@drawable/ic_baseline_view_module_24"
+        app:showAsAction="ifRoom"
+        />
+    <item android:id="@+id/actionList"
+        android:title="@string/list"
+        android:icon="@drawable/ic_view_list_24"
+        app:showAsAction="ifRoom"
+        android:visible="false"
+        />
+</menu>
