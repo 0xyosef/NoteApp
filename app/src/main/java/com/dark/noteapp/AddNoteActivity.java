@@ -52,7 +52,7 @@ public class AddNoteActivity extends AppCompatActivity {
         mAddNoteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getDataFromEditText();
+                addNote();
             }
         });
     }
@@ -103,16 +103,11 @@ public class AddNoteActivity extends AppCompatActivity {
         //start the activity to get the file
         startActivityForResult(Intent.createChooser(intent,getString(R.string.select_picture)),PICK_IMAGE);
     }
-    public void getDataFromEditText() {
-        title_str =mTitleNode.getText().toString();
-        text_str =mTextNoteEdt.getText().toString();
-        addNote(title_str,text_str);
-    }
-    private void addNote(String title, String text) {
-            if (title_str !=null||text_str !=null){
+    private void addNote() {
+            if (mTitleNode.getText().toString() !=null ||mTextNoteEdt.getText().toString() !=null){
                 Intent intent=new Intent();
-                intent.putExtra(Constant.EXTRA_TITLE_URI, title_str);
-                intent.putExtra(Constant.EXTRA_EDT_URI, text_str);
+                intent.putExtra(Constant.EXTRA_TITLE_URI, mTitleNode.getText().toString());
+                intent.putExtra(Constant.EXTRA_EDT_URI, mTextNoteEdt.getText().toString());
                 setResult(RESULT_OK,intent);
                 finish();
             }else

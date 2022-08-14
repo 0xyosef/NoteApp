@@ -66,6 +66,10 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode==ADD_NOTE){
             if (resultCode == RESULT_OK &&data!=null){
                 //code get String from intent
+                String title=data.getStringExtra(Constant.EXTRA_TITLE_URI);
+                String content=data.getStringExtra(Constant.EXTRA_EDT_URI);
+                Data data1=new Data(title,content);
+                addItem(data1);
             }else {
                 Toast.makeText(this, R.string.didnt_add_note, Toast.LENGTH_SHORT).show();
             }
