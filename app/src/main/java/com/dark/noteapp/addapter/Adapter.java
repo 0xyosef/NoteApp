@@ -10,14 +10,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dark.noteapp.R;
-import com.dark.noteapp.data.Data;
+import com.dark.noteapp.data.Note;
 
 import java.util.ArrayList;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.AdapterViewHolder> {
-    public ArrayList<Data> mItems;
+    public ArrayList<Note> mItems;
 
-    public Adapter(ArrayList<Data> mItems) {
+    public Adapter(ArrayList<Note> mItems) {
         this.mItems = mItems;
     }
 
@@ -30,8 +30,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.AdapterViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull AdapterViewHolder holder,  @SuppressLint("RecyclerView") int position) {
-      Data data=mItems.get(position);
-      holder.aTextNote.setText(data.getTextNot());
+      Note data=mItems.get(position);
+      holder.mDescriptionTv.setText(data.getmDescriptionTv());
       holder.aTitleNote.setText(data.getTitleNote());
       holder.position=position;
     }
@@ -42,13 +42,12 @@ public class Adapter extends RecyclerView.Adapter<Adapter.AdapterViewHolder> {
     }
     static class AdapterViewHolder extends RecyclerView.ViewHolder {
         private TextView aTitleNote;
-        private TextView aTextNote;
+        private TextView mDescriptionTv;
         private int position;
         public AdapterViewHolder(@NonNull View itemView) {
             super(itemView);
-            aTextNote=itemView.findViewById(R.id.text_view_note);
+            mDescriptionTv =itemView.findViewById(R.id.text_view_note);
             aTitleNote=itemView.findViewById(R.id.title_note_text);
-
         }
     }
 }
