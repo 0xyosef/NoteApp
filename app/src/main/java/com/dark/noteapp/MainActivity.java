@@ -18,13 +18,13 @@ import android.widget.Toast;
 
 import com.dark.noteapp.addapter.Adapter;
 import com.dark.noteapp.data.Constant;
-import com.dark.noteapp.data.Data;
+import com.dark.noteapp.data.Note;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private RecyclerView mRecycleView;
-    private ArrayList<Data> mItems;
+    private ArrayList<Note> mItems;
     private Adapter mAdapter;
     RecyclerView.LayoutManager mLinearLayoutManager;
     RecyclerView.LayoutManager mGridLayoutManager;
@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     }
     private void init(){
         mRecycleView=findViewById(R.id.recycler_view);
-        mItems =new ArrayList<Data>();
+        mItems =new ArrayList<Note>();
         mAdapter =new Adapter(mItems);
         mGridLayoutManager=new GridLayoutManager(this,2);
         mLinearLayoutManager=new LinearLayoutManager(this);
@@ -65,13 +65,16 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode==ADD_NOTE){
             if (resultCode == RESULT_OK &&data!=null){
-                //code get String from intent
+                String title=data.getStringExtra(Constant.EXTRA_TITLE);
+                String content=data.getStringExtra(Constant.EXTRA_EDT);
+                Note note=new Note(title,content);
+                addItem(note);
             }else {
                 Toast.makeText(this, R.string.didnt_add_note, Toast.LENGTH_SHORT).show();
             }
         }
     }
-    private void addItem(Data data){
+    private void addItem(Note data){
         mItems.add(data);
         mAdapter.notifyItemInserted(mItems.size()-1);
     }
