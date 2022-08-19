@@ -13,6 +13,9 @@
     <string name="more">more</string>
     <string name="grid">الجدول</string>
     <string name="list">القائمه</string>
+    <string name="delete_message">هل تريد حذف العنصر</string>
+    <string name="yes">نعم</string>
+    <string name="no">لا</string>
     <string name="content_description_more">more</string>
     <string name="didnt_add_note">didnt add note</string>
 </resources>

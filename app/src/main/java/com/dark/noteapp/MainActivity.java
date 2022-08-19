@@ -2,23 +2,26 @@ package com.dark.noteapp;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dark.noteapp.addapter.Adapter;
 import com.dark.noteapp.data.Constant;
 import com.dark.noteapp.data.Note;
+import com.dark.noteapp.listener.ItemClickListener;
+import com.dark.noteapp.listener.ItemLongClickListener;
 
 import java.util.ArrayList;
 
@@ -40,13 +43,47 @@ public class MainActivity extends AppCompatActivity {
     private void init(){
         mRecycleView=findViewById(R.id.recycler_view);
         mItems =new ArrayList<Note>();
-        mAdapter =new Adapter(mItems);
+        mAdapter =new Adapter(mItems,  new ItemClickListener() {
+            @Override
+            public void onClickItem(int position) {
+                editNote(position);
+            }
+         },
+                new ItemLongClickListener() {
+                    @Override
+                    public void onLongClickItem(int position) {
+                        deleteItem(position);
+                    }
+                });
         mGridLayoutManager=new GridLayoutManager(this,2);
         mLinearLayoutManager=new LinearLayoutManager(this);
         mRecycleView.setLayoutManager(mLinearLayoutManager);
         mRecycleView.setAdapter(mAdapter);
         setListener();
     }
+
+    private void editNote(int position) {
+        //TODO: edit note
+    }
+
+    private void deleteItem(int position) {
+        AlertDialog alertDialog=new AlertDialog.Builder(this)
+                .setMessage(R.string.delete_message).setPositiveButton(R.string.yes,new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        mItems.remove(position);
+                        mAdapter.notifyItemRemoved(position);
+                    }
+                }).setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                }).create();
+        alertDialog.show();
+    }
+
+
     private void setListener(){
         findViewById(R.id.floating_button_add).setOnClickListener(new View.OnClickListener() {
             @Override
